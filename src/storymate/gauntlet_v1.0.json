@@ -1,0 +1,556 @@
+{
+  "projectTitle": "Gauntlet v1.0",
+  "author": "",
+  "schemaVersion": "1.0",
+  "projectId": "e15Ow1S2pgvX3xdnzX08",
+  "creationDate": "2025-04-04T07:58:23.041Z",
+  "lastModifiedDate": "2025-04-04T08:29:04.154Z",
+  "version": "3",
+  "nodesData": [
+    {
+      "passageTitle": "Cover",
+      "id": 0.1,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 2170,
+        "y": 30
+      },
+      "parentIds": [],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": ""
+    },
+    {
+      "passageTitle": "Gauntlet:Pattern in Choice-Based Games",
+      "id": 1,
+      "text": "<p>Long rather than broad, gauntlets have a relatively linear central thread, pruned by branches which end in death, backtracking, or quick rejoining. The Gauntlet generally tells one anointed story, which can be adorned with optional content or prematurely ended with failure; if there are multiple endings, they’re likely to derive from a Final Choice. Gauntlets rarely rely on state to any great extent (if they do, they are likely to evolve into a branch-and-bottleneck structure.)</p><p></p><p><span class=\"imagev2\" data-image-name=\"Gauntlet:Pattern in Choice-Based Games-image-b2581034-bd3e-4c22-be8d-15b11eb75816\" data-url=\"https://test-ai-writing.s3.ap-southeast-2.amazonaws.com/users/9HX2LO40UvaxFHvGWU7P7D7WZ3S2/images/1743754546234_3v8h4n91.png\"><span contenteditable=\"false\"><span class=\"imageName\" contenteditable=\"false\" style=\"display:none\"><span>Gauntlet:Pattern in Choice-Based Games-image-b2581034-bd3e-4c22-be8d-15b11eb75816</span></span><img src=\"https://test-ai-writing.s3.ap-southeast-2.amazonaws.com/users/9HX2LO40UvaxFHvGWU7P7D7WZ3S2/images/1743754546234_3v8h4n91.png\"></span></span></p><p></p><p><em>Effects:&nbsp;</em>The player is likely to realise that they are on a constrained path, but the presentation of side-branches matters a great deal – do they mean death? incorrect answers? travel back in time? blocked paths, footnotes, &nbsp;or&nbsp;scenic details? Most often,<em>&nbsp;</em>the gauntlet creates an atmosphere of a hazardous, difficult or constrained world. Sometimes this can be punishing or depressing; sometimes it can be darkly comic; sometimes it’s a sign that you’re in a work heavily dependent on reflective or rhetorical choice. Perhaps the easiest structure to author, gauntlets can be conceived of in similar terms to&nbsp;linear stories, and ensure that most players will see most of the important content.</p><p></p><p>There are two major varieties of gauntlet: deadly and friendly. Deadly gauntlets mostly prune the tree with&nbsp;<em>failure</em>; friendly ones mostly do so with short-range rejoining, and look a bit more like simple <em>branch-and-bottleneck</em> structures. Friendly gauntlets have been vastly more common in recent years, making up a high&nbsp;proportion of Twine works.</p><p></p><p><em>Examples:&nbsp;</em>Zork: The Forces of Krill<em>. </em>Our Boys In Uniform<em>.</em></p><p></p><p>Navigate example Gauntlet.</p>",
+      "prompt": "",
+      "position": {
+        "x": 1926,
+        "y": 289
+      },
+      "parentIds": [
+        2
+      ],
+      "childrenIds": [
+        2,
+        3
+      ],
+      "choicesText": [
+        {
+          "id": 2,
+          "choiceText": "1"
+        },
+        {
+          "id": 3,
+          "choiceText": "2"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔵"
+      }
+    },
+    {
+      "passageTitle": "1",
+      "id": 2,
+      "text": "<p>Passage 1 goes to back to start.</p>",
+      "prompt": "",
+      "position": {
+        "x": 2098.768,
+        "y": 119.12800000000001
+      },
+      "parentIds": [
+        1
+      ],
+      "childrenIds": [
+        1
+      ],
+      "choicesText": [
+        {
+          "id": 1,
+          "choiceText": "Start"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟡"
+      }
+    },
+    {
+      "passageTitle": "2",
+      "id": 3,
+      "text": "<p>Passage 2 goes to passage 3 and passage 4</p><p></p><p>Passage 3 = game over</p><p>Passage 4 = move forward</p>",
+      "prompt": "",
+      "position": {
+        "x": 2149,
+        "y": 289
+      },
+      "parentIds": [
+        1
+      ],
+      "childrenIds": [
+        4,
+        5
+      ],
+      "choicesText": [
+        {
+          "id": 4,
+          "choiceText": "3"
+        },
+        {
+          "id": 5,
+          "choiceText": "4"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟠"
+      }
+    },
+    {
+      "passageTitle": "3",
+      "id": 4,
+      "text": "<p>Game over screen</p>",
+      "prompt": "",
+      "position": {
+        "x": 2229,
+        "y": 434
+      },
+      "parentIds": [
+        3
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "4",
+      "id": 5,
+      "text": "<p>Passage 4 goes to passage 5 and passage 6</p><p></p><p>Passage 5 = game over</p><p>Passage 6 = move forward</p>",
+      "prompt": "",
+      "position": {
+        "x": 2337,
+        "y": 290
+      },
+      "parentIds": [
+        3
+      ],
+      "childrenIds": [
+        6,
+        7
+      ],
+      "choicesText": [
+        {
+          "id": 6,
+          "choiceText": "5"
+        },
+        {
+          "id": 7,
+          "choiceText": "6"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟠"
+      }
+    },
+    {
+      "passageTitle": "5",
+      "id": 6,
+      "text": "<p>Passage 5 = Game over screen</p>",
+      "prompt": "",
+      "position": {
+        "x": 2457,
+        "y": 141
+      },
+      "parentIds": [
+        5
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "6",
+      "id": 7,
+      "text": "<p>Passage 6 goes to passage 7 which is safe</p>",
+      "prompt": "",
+      "position": {
+        "x": 2524,
+        "y": 289
+      },
+      "parentIds": [
+        5,
+        9
+      ],
+      "childrenIds": [
+        8
+      ],
+      "choicesText": [
+        {
+          "id": 8,
+          "choiceText": "7"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟡"
+      }
+    },
+    {
+      "passageTitle": "7",
+      "id": 8,
+      "text": "<p>Passage 7 goes to passage 8, passage 9 and passage 10</p><p></p><p>Passage 8 = safe (but note passage 8 steps player backwards)</p><p>Passage 9 = game over </p><p>Passage 10 = move forward </p>",
+      "prompt": "",
+      "position": {
+        "x": 2704.125,
+        "y": 291
+      },
+      "parentIds": [
+        7
+      ],
+      "childrenIds": [
+        9,
+        10,
+        11
+      ],
+      "choicesText": [
+        {
+          "id": 9,
+          "choiceText": "8"
+        },
+        {
+          "id": 10,
+          "choiceText": "9"
+        },
+        {
+          "id": 11,
+          "choiceText": "10"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟠"
+      }
+    },
+    {
+      "passageTitle": "8",
+      "id": 9,
+      "text": "<p>Passage 8 sends player back to passage 6</p>",
+      "prompt": "",
+      "position": {
+        "x": 2754.061,
+        "y": 458.27199999999993
+      },
+      "parentIds": [
+        8
+      ],
+      "childrenIds": [
+        7
+      ],
+      "choicesText": [
+        {
+          "id": 7,
+          "choiceText": "6"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟡"
+      }
+    },
+    {
+      "passageTitle": "9",
+      "id": 10,
+      "text": "<p>Passage 9 = game over screen</p>",
+      "prompt": "",
+      "position": {
+        "x": 2757.117,
+        "y": 145
+      },
+      "parentIds": [
+        8
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "10",
+      "id": 11,
+      "text": "<p>Passage 10 goes to Passage 11 which is safe</p>",
+      "prompt": "",
+      "position": {
+        "x": 3051.997,
+        "y": 302.39200000000005
+      },
+      "parentIds": [
+        8
+      ],
+      "childrenIds": [
+        12
+      ],
+      "choicesText": [
+        {
+          "id": 12,
+          "choiceText": "11"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟡"
+      }
+    },
+    {
+      "passageTitle": "11",
+      "id": 12,
+      "text": "<p>Passage 11 goes to passage 12, passage 13, passage 16, passage 14, and passage 15</p><p></p><p>Passage 12 = game over</p><p>Passage 13 = game over</p><p>Passage 16 = </p>",
+      "prompt": "",
+      "position": {
+        "x": 3275.388999999999,
+        "y": 301.6880000000001
+      },
+      "parentIds": [
+        11
+      ],
+      "childrenIds": [
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "choicesText": [
+        {
+          "id": 13,
+          "choiceText": "12"
+        },
+        {
+          "id": 14,
+          "choiceText": "13"
+        },
+        {
+          "id": 15,
+          "choiceText": "16"
+        },
+        {
+          "id": 16,
+          "choiceText": "14"
+        },
+        {
+          "id": 17,
+          "choiceText": "15"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟠"
+      }
+    },
+    {
+      "passageTitle": "12",
+      "id": 13,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3422.7489999999993,
+        "y": 43.512000000000214
+      },
+      "parentIds": [
+        12
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "13",
+      "id": 14,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3479.8049999999994,
+        "y": 211.12800000000016
+      },
+      "parentIds": [
+        12
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "16",
+      "id": 15,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3690.6529999999984,
+        "y": 306.1680000000001
+      },
+      "parentIds": [
+        12
+      ],
+      "childrenIds": [
+        18,
+        19
+      ],
+      "choicesText": [
+        {
+          "id": 18,
+          "choiceText": "17"
+        },
+        {
+          "id": 19,
+          "choiceText": "18 end"
+        }
+      ],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟠"
+      }
+    },
+    {
+      "passageTitle": "14",
+      "id": 16,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3481.5969999999993,
+        "y": 378.74400000000014
+      },
+      "parentIds": [
+        12
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "15",
+      "id": 17,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3409.053,
+        "y": 565.3680000000002
+      },
+      "parentIds": [
+        12
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "17",
+      "id": 18,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 3876.0289999999977,
+        "y": 148.2160000000002
+      },
+      "parentIds": [
+        15
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🔴"
+      }
+    },
+    {
+      "passageTitle": "18 end",
+      "id": 19,
+      "text": "",
+      "prompt": "",
+      "position": {
+        "x": 4050.588999999998,
+        "y": 298.5520000000001
+      },
+      "parentIds": [
+        15
+      ],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "data": {
+        "tag": "🟢"
+      }
+    },
+    {
+      "passageTitle": "Note",
+      "id": 20,
+      "text": "🟡  go back\n🔴  game over state\n🟠 forward only\n🟢 win state",
+      "prompt": "",
+      "position": {
+        "x": 1794.9569999999994,
+        "y": -12.375999999999763
+      },
+      "parentIds": [],
+      "childrenIds": [],
+      "choicesText": [],
+      "imagePrompt": "",
+      "imageURL": "",
+      "nodeType": "note"
+    }
+  ],
+  "storyImages": [
+    {
+      "nodeId": 1,
+      "base64Data": ""
+    }
+  ],
+  "themeName": "Paper White",
+  "customData": {},
+  "editorMetadata": {
+    "zoom": 0.6944444444444445,
+    "nodeEditModalVisible": true,
+    "selectedNodeId": 1
+  }
+}

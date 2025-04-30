@@ -4,7 +4,7 @@ import { useI18n } from "./i18n";
 import LoadingScreen from "./screens/LoadingScreen";
 import { defineAssets } from "./utils/assets-utility";
 import { initializeIndexedDB } from "./utils/indexedDB-utility";
-import { importAllInkLabels } from "./utils/ink-utility";
+import { importAllInkLabels } from "./utils/storymate-utility";
 
 export default function App() {
     const Home = lazy(async () => {

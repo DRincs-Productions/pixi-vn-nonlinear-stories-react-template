@@ -2,7 +2,6 @@ import { Box } from "@mui/joy";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Routes from "./AppRoutes";
 import useClosePageDetector from "./hooks/useClosePageDetector";
-import useInkInitialization from "./hooks/useInkInitialization";
 import useKeyboardDetector from "./hooks/useKeyboardDetector";
 import useEventListener from "./hooks/useKeyDetector";
 import useNetworkDetector from "./hooks/useNetworkDetector";
@@ -16,7 +15,6 @@ function HomeChild() {
     useKeyboardDetector();
     useClosePageDetector();
     useNetworkDetector();
-    useInkInitialization();
     // Prevent the user from going back to the previous page
     useEventListener({
         type: "popstate",

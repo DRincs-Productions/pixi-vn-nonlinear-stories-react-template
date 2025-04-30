@@ -75,7 +75,7 @@ export default function MainMenu() {
                     canvas.removeAll();
                     navigate(NARRATION_ROUTE);
                     narration
-                        .callLabel("start", gameProps)
+                        .callLabel("storymate-0.1", gameProps)
                         .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }));
                 }}
                 transitionDelay={0.2}
