@@ -1,4 +1,4 @@
-import Box from "@mui/joy/Box";
+import { Grid } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import { motion, Variants } from "motion/react";
@@ -41,7 +41,9 @@ export default function NarrationScreen() {
     }, []);
 
     return (
-        <Box
+        <Grid
+            container
+            direction='column'
             sx={{
                 height: "100%",
                 width: "100%",
@@ -51,8 +53,9 @@ export default function NarrationScreen() {
                 right: 0,
                 top: 0,
                 bottom: 0,
-                alignItems: "center",
                 justifyContent: "center",
+                alignItems: "center",
+                pointerEvents: "auto",
             }}
         >
             <Sheet
@@ -65,6 +68,7 @@ export default function NarrationScreen() {
                     height: "100%",
                     maxWidth: { sm: 650, md: 650, lg: "60%" },
                     padding: 2,
+                    width: "100%",
                 }}
             >
                 {character && character.name && (
@@ -115,8 +119,8 @@ export default function NarrationScreen() {
                         </span>
                     }
                 </p>
-                <ChoiceMenu fullscreen={text || oldText ? false : true} />
+                <ChoiceMenu />
             </Sheet>
-        </Box>
+        </Grid>
     );
 }
