@@ -46,20 +46,24 @@ export default function NarrationScreen() {
                 height: "100%",
                 width: "100%",
                 position: "absolute",
-                padding: 2,
+                padding: { xs: 0, sm: 2, md: 3 },
                 left: 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
             <Sheet
                 ref={paragraphRef}
                 sx={{
                     bgcolor: "background.level1",
+                    opacity: 0.8,
                     borderRadius: "sm",
                     overflow: "auto",
                     height: "100%",
+                    maxWidth: { sm: 650, md: 650, lg: "60%" },
                     padding: 2,
                 }}
             >
