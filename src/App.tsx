@@ -6,15 +6,23 @@ import { defineAssets } from "./utils/assets-utility";
 import { initializeIndexedDB } from "./utils/indexedDB-utility";
 import { importAllInkLabels } from "./utils/storymate-utility";
 
-export default function App() {
-    const Home = lazy(async () => {
-        let promileAll = Promise.all([initializeIndexedDB(), defineAssets(), useI18n(), importAllInkLabels()]);
-        await promileAll;
-        return await import("./Home");
-    });
+const Home = lazy(async () => {
+    await Promise.all([initializeIndexedDB(), defineAssets(), useI18n(), importAllInkLabels()]);
+    return import("./Home");
+});
 
+function ErrorFallback({ error }: { error: Error }) {
     return (
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <div role='alert'>
+            <h2>Something went wrong</h2>
+            <p>{error.message}</p>
+        </div>
+    );
+}
+
+export default function App() {
+    return (
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<LoadingScreen />}>
                 <Home />
             </Suspense>
