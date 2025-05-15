@@ -80,17 +80,14 @@ function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTM
 
     return (
         <>
-            {history.map(({ character, text }, index) => {
-                return (
-                    <NarrationScreenText
-                        key={`narrationscreentext-${index}`}
-                        animatedText={animatedText}
-                        character={character}
-                        text={text}
-                        paragraphRef={paragraphRef}
-                    />
-                );
-            })}
+            {history.map(({ character, text }, index) => (
+                <NarrationScreenText
+                    key={`narrationscreentext-${index}`}
+                    animatedText={animatedText}
+                    character={character}
+                    text={text}
+                />
+            ))}
             <NarrationScreenText
                 key={`narrationscreentext-${history.length}`}
                 animatedText={animatedText}
@@ -113,21 +110,23 @@ function NarrationScreenText({
     animatedText?: string;
     character?: CharacterInterface;
     text?: string;
-    paragraphRef: RefObject<HTMLDivElement | null>;
+    paragraphRef?: RefObject<HTMLDivElement | null>;
 }) {
     const typewriterDelay = useTypewriterStore(useShallow((state) => state.delay));
     const startTypewriter = useTypewriterStore(useShallow((state) => state.start));
     const endTypewriter = useTypewriterStore(useShallow((state) => state.end));
 
-    const handleCharacterAnimationComplete = useCallback((ref: { current: HTMLSpanElement | null }) => {
-        if (paragraphRef.current && ref.current) {
-            let scrollTop = ref.current.offsetTop - paragraphRef.current.clientHeight / 2;
-            paragraphRef.current.scrollTo({
-                top: scrollTop,
-                behavior: "auto",
-            });
-        }
-    }, []);
+    const handleCharacterAnimationComplete = paragraphRef
+        ? useCallback((ref: { current: HTMLSpanElement | null }) => {
+              if (paragraphRef.current && ref.current) {
+                  let scrollTop = ref.current.offsetTop - paragraphRef.current.clientHeight / 2;
+                  paragraphRef.current.scrollTo({
+                      top: scrollTop,
+                      behavior: "auto",
+                  });
+              }
+          }, [])
+        : undefined;
 
     return (
         <div key={key}>
