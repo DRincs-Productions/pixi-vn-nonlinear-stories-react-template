@@ -74,8 +74,7 @@ export default function NarrationScreen() {
     );
 }
 
-function NarrationScreenText(props: { paragraphRef: RefObject<HTMLDivElement | null> }) {
-    const { paragraphRef } = props;
+function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDivElement | null> }) {
     const typewriterDelay = useTypewriterStore(useShallow((state) => state.delay));
     const startTypewriter = useTypewriterStore(useShallow((state) => state.start));
     const endTypewriter = useTypewriterStore(useShallow((state) => state.end));
