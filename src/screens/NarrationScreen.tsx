@@ -80,8 +80,7 @@ function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTM
 
     return (
         <>
-            {history.map((item, index) => {
-                const { character, text } = item.dialogue || {};
+            {history.map(({ character, text }, index) => {
                 return (
                     <NarrationScreenText
                         key={`narrationscreentext-${index}`}
