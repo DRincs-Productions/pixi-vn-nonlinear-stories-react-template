@@ -12,7 +12,7 @@ import useTypewriterStore from "../../stores/useTypewriterStore";
 import { INTERFACE_DATA_USE_QUEY_KEY, useQueryDialogue, useQueryInputValue } from "../../use_query/useQueryInterface";
 
 export default function TextInput() {
-    const { data: { text } = {} } = useQueryDialogue();
+    const { data: { animatedText: text } = {} } = useQueryDialogue();
     const { data: { isRequired, type, currentValue } = { currentValue: undefined, isRequired: false } } =
         useQueryInputValue<string | number>();
     const open = useTypewriterStore(useShallow((state) => !state.inProgress && isRequired));

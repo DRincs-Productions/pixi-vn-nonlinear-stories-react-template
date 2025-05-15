@@ -40,8 +40,8 @@ export function useQueryInputValue<T>() {
 }
 
 type DialogueModel = {
+    animatedText?: string;
     text?: string;
-    oldText?: string;
     character?: CharacterInterface;
 };
 const DIALOGUE_USE_QUEY_KEY = "dialogue_use_quey_key";
@@ -63,21 +63,21 @@ export function useQueryDialogue() {
             }
 
             let prevData = queryClient.getQueryData<DialogueModel>(queryKey) || {};
-            let oldText = (prevData.oldText || "") + (prevData.text || "");
+            let oldText = (prevData.text || "") + (prevData.animatedText || "");
             if (text && newCharacter?.id === prevData?.character?.id && text.startsWith(oldText)) {
                 let newText = text.slice(oldText.length);
                 if (!newText && oldText && newCharacter === prevData?.character) {
                     return prevData;
                 }
                 return {
-                    text: newText,
-                    oldText: oldText,
+                    animatedText: newText,
+                    text: oldText,
                     character: newCharacter,
                 };
             }
 
             return {
-                text: text,
+                animatedText: text,
                 character: newCharacter,
             };
         },

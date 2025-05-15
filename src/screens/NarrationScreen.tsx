@@ -1,7 +1,7 @@
 import { Grid } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { RefObject, useCallback, useRef } from "react";
 import Markdown from "react-markdown";
 import { MarkdownTypewriterHooks } from "react-markdown-typewriter";
@@ -15,8 +15,19 @@ import { useQueryDialogue } from "../use_query/useQueryInterface";
 import ChoiceMenu from "./ChoiceMenu";
 
 export default function NarrationScreen() {
-    const { data: { text, character, oldText } = {} } = useQueryDialogue();
-    const hidden = useInterfaceStore((state) => state.hidden || (text || oldText ? false : true));
+    const { data: { animatedText, text } = {} } = useQueryDialogue();
+    const hidden = useInterfaceStore((state) => state.hidden || (animatedText || text ? false : true));
+    const cardVarians: Variants = {
+        open: {
+            opacity: 1,
+            y: 0,
+        },
+        closed: {
+            opacity: 0,
+            y: 200,
+            pointerEvents: "none",
+        },
+    };
     const paragraphRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -34,7 +45,6 @@ export default function NarrationScreen() {
                 bottom: 0,
                 justifyContent: "center",
                 alignItems: "center",
-                pointerEvents: "auto",
             }}
         >
             <Sheet
@@ -48,9 +58,17 @@ export default function NarrationScreen() {
                     maxWidth: { sm: 650, md: 650, lg: "60%" },
                     padding: 2,
                     width: "100%",
+                    pointerEvents: "auto",
                 }}
+                component={motion.div}
+                variants={cardVarians}
+                initial={"closed"}
+                animate={hidden ? "closed" : "open"}
+                exit={"closed"}
+                transition={{ type: "tween" }}
             >
                 <NarrationScreenText paragraphRef={paragraphRef} />
+                <ChoiceMenu />
             </Sheet>
         </Grid>
     );
@@ -61,7 +79,7 @@ function NarrationScreenText(props: { paragraphRef: RefObject<HTMLDivElement | n
     const typewriterDelay = useTypewriterStore(useShallow((state) => state.delay));
     const startTypewriter = useTypewriterStore(useShallow((state) => state.start));
     const endTypewriter = useTypewriterStore(useShallow((state) => state.end));
-    const { data: { text, character, oldText } = {} } = useQueryDialogue();
+    const { data: { animatedText, character, text } = {} } = useQueryDialogue();
 
     const handleCharacterAnimationComplete = useCallback((ref: { current: HTMLSpanElement | null }) => {
         if (paragraphRef.current && ref.current) {
@@ -99,7 +117,7 @@ function NarrationScreenText(props: { paragraphRef: RefObject<HTMLDivElement | n
                             p: (props) => <span {...props} />,
                         }}
                     >
-                        {oldText}
+                        {text}
                     </Markdown>
                 </span>
                 <span>
@@ -119,11 +137,10 @@ function NarrationScreenText(props: { paragraphRef: RefObject<HTMLDivElement | n
                         }}
                         fallback={<AnimatedDots />}
                     >
-                        {text}
+                        {animatedText}
                     </MarkdownTypewriterHooks>
                 </span>
             </p>
-            <ChoiceMenu />
         </>
     );
 }
