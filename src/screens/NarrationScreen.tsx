@@ -1,5 +1,5 @@
 import { CharacterInterface } from "@drincs/pixi-vn";
-import { Grid } from "@mui/joy";
+import { Box, Grid } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import { motion, Variants } from "motion/react";
@@ -39,7 +39,6 @@ export default function NarrationScreen() {
                 height: "100%",
                 width: "100%",
                 position: "absolute",
-                padding: { xs: 0, sm: 2, md: 3 },
                 left: 0,
                 right: 0,
                 top: 0,
@@ -54,11 +53,26 @@ export default function NarrationScreen() {
             exit={"closed"}
             transition={{ type: "tween" }}
         >
+            <Box
+                sx={{
+                    position: "absolute",
+                    bgcolor: "background.level1",
+                    opacity: 0.9,
+                    borderRadius: "sm",
+                    overflow: "auto",
+                    top: 0,
+                    bottom: 0,
+                    maxWidth: { sm: 650, md: 650, lg: "60%" },
+                    padding: 2,
+                    width: "100%",
+                    pointerEvents: "auto",
+                    margin: { xs: 0, sm: 2, md: 3 },
+                }}
+            ></Box>
             <Sheet
                 ref={paragraphRef}
                 sx={{
-                    bgcolor: "background.level1",
-                    opacity: 0.8,
+                    bgcolor: "transparent",
                     borderRadius: "sm",
                     overflow: "auto",
                     height: "100%",
@@ -66,6 +80,7 @@ export default function NarrationScreen() {
                     padding: 2,
                     width: "100%",
                     pointerEvents: "auto",
+                    margin: { xs: 0, sm: 2, md: 3 },
                 }}
             >
                 <NarrationScreenTextList paragraphRef={paragraphRef} />
