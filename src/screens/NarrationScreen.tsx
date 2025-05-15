@@ -1,8 +1,9 @@
+import { CharacterInterface } from "@drincs/pixi-vn";
 import { Grid } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import { motion, Variants } from "motion/react";
-import { RefObject, useCallback, useRef } from "react";
+import { Key, RefObject, useCallback, useRef } from "react";
 import Markdown from "react-markdown";
 import { MarkdownTypewriterHooks } from "react-markdown-typewriter";
 import rehypeRaw from "rehype-raw";
@@ -67,18 +68,57 @@ export default function NarrationScreen() {
                 exit={"closed"}
                 transition={{ type: "tween" }}
             >
-                <NarrationScreenText paragraphRef={paragraphRef} />
+                <NarrationScreenTextList paragraphRef={paragraphRef} />
                 <ChoiceMenu />
             </Sheet>
         </Grid>
     );
 }
 
-function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDivElement | null> }) {
+function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTMLDivElement | null> }) {
+    const { data: { animatedText, character, text, history = [] } = {} } = useQueryDialogue();
+
+    return (
+        <>
+            {history.map((item, index) => {
+                const { character, text } = item.dialogue || {};
+                return (
+                    <NarrationScreenText
+                        key={`narrationscreentext-${index}`}
+                        animatedText={animatedText}
+                        character={character}
+                        text={text}
+                        paragraphRef={paragraphRef}
+                    />
+                );
+            })}
+            <NarrationScreenText
+                key={`narrationscreentext-${history.length}`}
+                animatedText={animatedText}
+                character={character}
+                text={text}
+                paragraphRef={paragraphRef}
+            />
+        </>
+    );
+}
+
+function NarrationScreenText({
+    key,
+    animatedText,
+    character,
+    text,
+    paragraphRef,
+}: {
+    key?: Key | null | undefined;
+    animatedText?: string;
+    character?: CharacterInterface;
+    text?: string;
+    paragraphRef: RefObject<HTMLDivElement | null>;
+}) {
     const typewriterDelay = useTypewriterStore(useShallow((state) => state.delay));
     const startTypewriter = useTypewriterStore(useShallow((state) => state.start));
     const endTypewriter = useTypewriterStore(useShallow((state) => state.end));
-    const { data: { animatedText, character, text } = {} } = useQueryDialogue();
 
     const handleCharacterAnimationComplete = useCallback((ref: { current: HTMLSpanElement | null }) => {
         if (paragraphRef.current && ref.current) {
@@ -91,7 +131,7 @@ function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDiv
     }, []);
 
     return (
-        <>
+        <div key={key}>
             {character && character.name && (
                 <Typography
                     fontSize='xl'
@@ -140,6 +180,6 @@ function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDiv
                     </MarkdownTypewriterHooks>
                 </span>
             </p>
-        </>
+        </div>
     );
 }
