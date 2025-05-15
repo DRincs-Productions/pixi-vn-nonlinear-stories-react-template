@@ -47,6 +47,12 @@ export default function NarrationScreen() {
                 justifyContent: "center",
                 alignItems: "center",
             }}
+            component={motion.div}
+            variants={cardVarians}
+            initial={"closed"}
+            animate={hidden ? "closed" : "open"}
+            exit={"closed"}
+            transition={{ type: "tween" }}
         >
             <Sheet
                 ref={paragraphRef}
@@ -61,12 +67,6 @@ export default function NarrationScreen() {
                     width: "100%",
                     pointerEvents: "auto",
                 }}
-                component={motion.div}
-                variants={cardVarians}
-                initial={"closed"}
-                animate={hidden ? "closed" : "open"}
-                exit={"closed"}
-                transition={{ type: "tween" }}
             >
                 <NarrationScreenTextList paragraphRef={paragraphRef} />
                 <ChoiceMenu />
