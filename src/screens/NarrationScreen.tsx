@@ -96,15 +96,10 @@ function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTM
     return (
         <>
             {history.map(({ character, text }, index) => (
-                <NarrationScreenText
-                    key={`narrationscreentext-${index}`}
-                    animatedText={animatedText}
-                    character={character}
-                    text={text}
-                />
+                <NarrationScreenText index={`narrationscreentext-${index}`} character={character} text={text} />
             ))}
             <NarrationScreenText
-                key={`narrationscreentext-${history.length}`}
+                index={`narrationscreentext-${history.length}`}
                 animatedText={animatedText}
                 character={character}
                 text={text}
@@ -115,13 +110,13 @@ function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTM
 }
 
 function NarrationScreenText({
-    key,
+    index,
     animatedText,
     character,
     text,
     paragraphRef,
 }: {
-    key?: Key | null | undefined;
+    index?: Key | null | undefined;
     animatedText?: string;
     character?: CharacterInterface;
     text?: string;
@@ -144,7 +139,7 @@ function NarrationScreenText({
         : undefined;
 
     return (
-        <div key={key}>
+        <div key={index}>
             {character && character.name && (
                 <Typography
                     fontSize='xl'
@@ -152,10 +147,6 @@ function NarrationScreenText({
                     sx={{
                         color: character.color,
                     }}
-                    component={motion.div}
-                    initial={"closed"}
-                    animate={character.name ? "open" : "closed"}
-                    exit={"closed"}
                 >
                     {character.name + (character.surname ? " " + character.surname : "")}
                 </Typography>
