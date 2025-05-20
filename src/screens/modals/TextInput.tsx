@@ -40,19 +40,17 @@ export default function TextInput() {
                     >
                         {t("confirm")}
                     </Button>
-                    {open && (
-                        <Input
-                            defaultValue={currentValue || ""}
-                            type={type}
-                            onChange={(e) => {
-                                let value: any = e.target.value;
-                                if (e.target.type === "number") {
-                                    value = e.target.valueAsNumber;
-                                }
-                                setTempValue(value);
-                            }}
-                        />
-                    )}
+                    <Input
+                        defaultValue={currentValue || ""}
+                        type={type}
+                        onChange={(e) => {
+                            let value: any = e.target.value;
+                            if (e.target.type === "number") {
+                                value = e.target.valueAsNumber;
+                            }
+                            setTempValue(value);
+                        }}
+                    />
                 </>
             }
         >
