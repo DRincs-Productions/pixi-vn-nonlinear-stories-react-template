@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "pixi-vn-react-template",
+    "site": "pixi-vn-react-st-template",
     "public": "dist",
     "ignore": [
       "firebase.json",
