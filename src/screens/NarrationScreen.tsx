@@ -2,8 +2,7 @@ import { CharacterInterface } from "@drincs/pixi-vn";
 import { Box, Grid } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
-import { motion, Variants } from "motion/react";
-import { Key, RefObject, useCallback, useRef } from "react";
+import { Key, RefObject, useCallback, useMemo, useRef } from "react";
 import Markdown from "react-markdown";
 import { MarkdownTypewriterHooks } from "react-markdown-typewriter";
 import rehypeRaw from "rehype-raw";
@@ -18,17 +17,13 @@ import ChoiceMenu from "./ChoiceMenu";
 export default function NarrationScreen() {
     const { data: { animatedText, text } = {} } = useQueryDialogue();
     const hidden = useInterfaceStore((state) => state.hidden || (animatedText || text ? false : true));
-    const cardVarians: Variants = {
-        open: {
-            opacity: 1,
-            y: 0,
-        },
-        closed: {
-            opacity: 0,
-            y: 200,
-            pointerEvents: "none",
-        },
-    };
+    const cardVarians = useMemo(
+        () =>
+            hidden
+                ? `motion-opacity-out-0 motion-translate-y-out-[50%]`
+                : `motion-opacity-in-0 motion-translate-y-in-[50%]`,
+        [hidden]
+    );
     const paragraphRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -46,12 +41,7 @@ export default function NarrationScreen() {
                 justifyContent: "center",
                 alignItems: "center",
             }}
-            component={motion.div}
-            variants={cardVarians}
-            initial={"closed"}
-            animate={hidden ? "closed" : "open"}
-            exit={"closed"}
-            transition={{ type: "tween" }}
+            className={cardVarians}
         >
             <Box
                 sx={{
@@ -140,17 +130,20 @@ function NarrationScreenText({
 
     return (
         <div key={index}>
-            {character && character.name && (
-                <Typography
-                    fontSize='xl'
-                    fontWeight='lg'
-                    sx={{
-                        color: character.color,
-                    }}
-                >
-                    {character.name + (character.surname ? " " + character.surname : "")}
-                </Typography>
-            )}
+            <Typography
+                fontSize='xl'
+                fontWeight='lg'
+                sx={{
+                    color: character?.color,
+                }}
+                className={
+                    character && character.name
+                        ? `motion-opacity-in-0 motion-translate-x-in-[-3%]`
+                        : `motion-opacity-out-0`
+                }
+            >
+                {`${character?.name || ""} ${character?.surname || ""}`}
+            </Typography>
             <p style={{ margin: 0, padding: 0 }}>
                 <span>
                     <Markdown
