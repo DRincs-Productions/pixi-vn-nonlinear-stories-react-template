@@ -96,10 +96,10 @@ function NarrationScreenTextList({ paragraphRef }: { paragraphRef: RefObject<HTM
     return (
         <>
             {history.map(({ character, text }, index) => (
-                <NarrationScreenText index={`narrationscreentext-${index}`} character={character} text={text} />
+                <NarrationScreenText key={`narrationscreentext-${index}`} character={character} text={text} />
             ))}
             <NarrationScreenText
-                index={`narrationscreentext-${history.length}`}
+                key={`narrationscreentext-${history.length}`}
                 animatedText={animatedText}
                 character={character}
                 text={text}
