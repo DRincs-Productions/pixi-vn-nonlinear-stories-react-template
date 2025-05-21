@@ -69,11 +69,13 @@ export function useQueryDialogue() {
             const promises = stepHistory.latestCurrentLabelHistory.map(async (step) => {
                 let character = step.dialogue?.character;
                 if (typeof character === "string") {
-                    character = new Character(character, { name: tNarration(character) });
+                    character = new Character(character, { name: t(character) });
                 }
                 let text = step.dialogue?.text || "";
                 if (Array.isArray(text)) {
-                    text = text.join(" ");
+                    text = text.map((text) => t(text)).join(" ");
+                } else if (typeof text === "string") {
+                    text = t(text);
                 }
                 return {
                     character: character,
@@ -83,10 +85,6 @@ export function useQueryDialogue() {
             const history = (await Promise.all(promises)).filter((data) => {
                 return data.text;
             });
-            if (history.length > 0) {
-                // remove the last element
-                history.pop();
-            }
 
             let prevData = queryClient.getQueryData<DialogueModel>(queryKey) || {};
             let oldText = (prevData.text || "") + (prevData.animatedText || "");
