@@ -72,7 +72,7 @@ export default function NarrationScreen() {
                     flexDirection: "column-reverse",
                 }}
             >
-                <Stack justifyContent='flex-end'>
+                <Stack justifyContent='flex-end' spacing={1}>
                     <PreviousDialoguesScreen />
                     <NarrationScreenText />
                     <ChoiceMenu />
