@@ -2,10 +2,10 @@ import Typography from "@mui/joy/Typography";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import { useQueryDialogue } from "../use_query/useQueryInterface";
+import { useQueryCurrentLabelHistory } from "../use_query/useQueryInterface";
 
 export default function PreviousDialoguesScreen() {
-    const { data: { history = [] } = {} } = useQueryDialogue();
+    const { data: history = [] } = useQueryCurrentLabelHistory();
 
     return (
         <>
