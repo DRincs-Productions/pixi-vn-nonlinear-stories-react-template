@@ -110,6 +110,8 @@ export function useQueryCurrentLabelHistory() {
                 return {
                     character: character,
                     text: text,
+                    choices: step.choices,
+                    inputValue: step.inputValue,
                 };
             });
 

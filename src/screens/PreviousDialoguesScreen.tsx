@@ -1,3 +1,5 @@
+import CheckIcon from "@mui/icons-material/Check";
+import { Chip } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -9,7 +11,7 @@ export default function PreviousDialoguesScreen() {
 
     return (
         <>
-            {history.map(({ character, text }, index) => (
+            {history.map(({ character, text, choices, inputValue }, index) => (
                 <div key={`previousdialogue-${index}`}>
                     {character?.name && (
                         <Typography
@@ -35,6 +37,29 @@ export default function PreviousDialoguesScreen() {
                             </Markdown>
                         </span>
                     </p>
+                    {choices &&
+                        choices.map((choice, index) => {
+                            if (choice.hidden) {
+                                return null;
+                            }
+                            if (choice.isResponse) {
+                                return (
+                                    <Chip key={"choices-success" + index} color='success' endDecorator={<CheckIcon />}>
+                                        {choice.text}
+                                    </Chip>
+                                );
+                            }
+                            return (
+                                <Chip key={"choices" + index} color='primary'>
+                                    {choice.text}
+                                </Chip>
+                            );
+                        })}
+                    {inputValue && (
+                        <Chip key={"choices-success" + index} color='neutral'>
+                            {inputValue.toString()}
+                        </Chip>
+                    )}
                 </div>
             ))}
         </>
