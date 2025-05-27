@@ -41,10 +41,6 @@ type DialogueModel = {
     animatedText?: string;
     text?: string;
     character?: CharacterInterface;
-    history?: {
-        text: string;
-        character?: CharacterInterface;
-    }[];
 };
 const DIALOGUE_USE_QUEY_KEY = "dialogue_use_quey_key";
 export function useQueryDialogue() {
@@ -66,7 +62,41 @@ export function useQueryDialogue() {
                 newCharacter = new Character(newCharacter, { name: t(newCharacter) });
             }
 
-            const promises = stepHistory.latestCurrentLabelHistory.map(async (step) => {
+            let prevData = queryClient.getQueryData<DialogueModel>(queryKey) || {};
+            let oldText = (prevData.text || "") + (prevData.animatedText || "");
+            if (text && newCharacter?.id === prevData?.character?.id && text.startsWith(oldText)) {
+                let newText = text.slice(oldText.length);
+                if (!newText && oldText && newCharacter === prevData?.character) {
+                    return prevData;
+                }
+                return {
+                    animatedText: newText,
+                    text: oldText,
+                    character: newCharacter,
+                };
+            }
+
+            return {
+                animatedText: text,
+                character: newCharacter,
+            };
+        },
+    });
+}
+
+const CURRENT_LABEL_HISTORY_USE_QUEY_KEY = "current_label_history_use_quey_key";
+export function useQueryCurrentLabelHistory() {
+    const { t } = useTranslation(["narration"]);
+
+    return useQuery({
+        queryKey: [INTERFACE_DATA_USE_QUEY_KEY, CURRENT_LABEL_HISTORY_USE_QUEY_KEY],
+        queryFn: async () => {
+            const currentLabelHistory = stepHistory.currentLabelHistory;
+            if (currentLabelHistory.length === 0) {
+                return [];
+            }
+            currentLabelHistory.pop();
+            const promises = currentLabelHistory.map(async (step) => {
                 let character = step.dialogue?.character;
                 if (typeof character === "string") {
                     character = new Character(character, { name: t(character) });
@@ -80,32 +110,14 @@ export function useQueryDialogue() {
                 return {
                     character: character,
                     text: text,
+                    choices: step.choices,
+                    inputValue: step.inputValue,
                 };
             });
-            const history = (await Promise.all(promises)).filter((data) => {
+
+            return (await Promise.all(promises)).filter((data) => {
                 return data.text;
             });
-
-            let prevData = queryClient.getQueryData<DialogueModel>(queryKey) || {};
-            let oldText = (prevData.text || "") + (prevData.animatedText || "");
-            if (text && newCharacter?.id === prevData?.character?.id && text.startsWith(oldText)) {
-                let newText = text.slice(oldText.length);
-                if (!newText && oldText && newCharacter === prevData?.character) {
-                    return prevData;
-                }
-                return {
-                    animatedText: newText,
-                    text: oldText,
-                    character: newCharacter,
-                    history: history,
-                };
-            }
-
-            return {
-                animatedText: text,
-                character: newCharacter,
-                history: history,
-            };
         },
     });
 }
