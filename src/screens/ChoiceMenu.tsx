@@ -1,6 +1,6 @@
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Grid } from "@mui/joy";
-import { useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import ChoiceButton from "../components/ChoiceButton";
 import useDebouncedEffect from "../hooks/useDebouncedEffect";
@@ -10,7 +10,7 @@ import useStepStore from "../stores/useStepStore";
 import useTypewriterStore from "../stores/useTypewriterStore";
 import { useQueryChoiceMenuOptions } from "../use_query/useQueryInterface";
 
-export default function ChoiceMenu() {
+export default function ChoiceMenu({ paragraphRef }: { paragraphRef: RefObject<HTMLDivElement | null> }) {
     const nextStepLoading = useStepStore((state) => state.loading);
     const { data: menu = [] } = useQueryChoiceMenuOptions();
     const typewriterInProgress = useTypewriterStore(useShallow((state) => state.inProgress));
@@ -23,6 +23,15 @@ export default function ChoiceMenu() {
         menu,
         typewriterInProgress,
     ]);
+    useEffect(() => {
+        // scroll to end of paragraph
+        if (open && paragraphRef.current) {
+            paragraphRef.current.scrollTo({
+                top: paragraphRef.current.scrollHeight,
+                behavior: "smooth",
+            });
+        }
+    }, [paragraphRef, open]);
 
     return (
         <Grid
