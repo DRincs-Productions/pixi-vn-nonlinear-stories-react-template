@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { CANVAS_UI_LAYER_NAME } from "./constans";
 import "./index.css";
+import "./labels";
 import "./values/characters";
 
-// Canvas setup with PIXI
 const body = document.body;
 if (!body) {
     throw new Error("body element not found");
