@@ -75,7 +75,7 @@ export default function NarrationScreen() {
                 <Stack spacing={1}>
                     <PreviousDialoguesScreen />
                     <NarrationScreenText paragraphRef={paragraphRef} />
-                    <ChoiceMenu />
+                    <ChoiceMenu paragraphRef={paragraphRef} />
                 </Stack>
             </Sheet>
         </Grid>
