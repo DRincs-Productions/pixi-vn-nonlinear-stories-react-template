@@ -1,13 +1,12 @@
-# Pixi’VN template (React + Vite + MUI joy)
+# Pixi’VN template - Text-based Story - React
 
 ![pixi-vn-cover-react](https://github.com/user-attachments/assets/2abc8047-be07-487d-bf9b-de1c1f7c2ca2)
 
-This is a template for creating visual novels in React. It uses the Pixi’VN library and Vite as a build tool.
-This Template contains basic functionality inspired by the widespread Visual Noval engine Ren'Py.
+This is a template for creating text-based stories in React. It uses the Pixi’VN library and Vite as a build tool.
 
 ## Overview
 
-For testing purposes we will recreate the visual novel [Breakdown](https://joshpowlison.itch.io/breakdown) with Pixi’VN in this guide. Breakdown is a short story that has all the features that a visual novel should have. Josh Powlison, the creator of Breakdown, has given us permission to use his narration for educational purposes❤️.
+For testing purposes we will recreate the visual novel [Breakdown](https://joshpowlison.itch.io/breakdown) with Pixi’VN in this guide. Josh Powlison, the creator of Breakdown, has given us permission to use his narration for educational purposes❤️.
 
 The first page that appears is the main menu. From there, you can start the game, load a saved game, or go to the settings.
 
