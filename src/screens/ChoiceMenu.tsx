@@ -46,6 +46,7 @@ export default function ChoiceMenu({ paragraphRef }: { paragraphRef: RefObject<H
                 width: "100%",
                 pointerEvents: hidden ? "none" : "auto",
                 margin: 0,
+                scrollbarWidth: "none",
             }}
         >
             {open &&
