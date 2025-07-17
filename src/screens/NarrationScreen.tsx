@@ -1,5 +1,5 @@
-import { Box, Grid, Stack, Typography } from "@mui/joy";
-import Sheet from "@mui/joy/Sheet";
+import { Grid, Sheet, Stack, Typography, useColorScheme } from "@mui/joy";
+import Box from "@mui/joy/Box";
 import { RefObject, useCallback, useMemo, useRef } from "react";
 import Markdown from "react-markdown";
 import { MarkdownTypewriterHooks } from "react-markdown-typewriter";
@@ -7,9 +7,9 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useShallow } from "zustand/react/shallow";
 import AnimatedDots from "../components/AnimatedDots";
+import { useQueryDialogue } from "../hooks/useQueryInterface";
 import useInterfaceStore from "../stores/useInterfaceStore";
 import useTypewriterStore from "../stores/useTypewriterStore";
-import { useQueryDialogue } from "../use_query/useQueryInterface";
 import ChoiceMenu from "./ChoiceMenu";
 import PreviousDialoguesScreen from "./PreviousDialoguesScreen";
 
@@ -57,7 +57,7 @@ export default function NarrationScreen() {
                     pointerEvents: "auto",
                     margin: { xs: 0, sm: 2, md: 3 },
                 }}
-            ></Box>
+            />
             <Sheet
                 ref={paragraphRef}
                 sx={{
@@ -87,6 +87,7 @@ function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDiv
     const startTypewriter = useTypewriterStore(useShallow((state) => state.start));
     const endTypewriter = useTypewriterStore(useShallow((state) => state.end));
     const { data: { animatedText, character, text } = {} } = useQueryDialogue();
+    const { mode } = useColorScheme();
 
     const handleCharacterAnimationComplete = useCallback((ref: { current: HTMLSpanElement | null }) => {
         if (paragraphRef.current && ref.current) {
@@ -114,7 +115,7 @@ function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDiv
             >
                 {`${character?.name || ""} ${character?.surname || ""}`}
             </Typography>
-            <p style={{ margin: 0, padding: 0 }}>
+            <p className={`prose ${mode === "dark" ? "dark:prose-invert" : ""}`} style={{ margin: 0, padding: 0 }}>
                 <span>
                     <Markdown
                         remarkPlugins={[remarkGfm]}
