@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { CANVAS_UI_LAYER_NAME } from "./constans";
 import "./index.css";
-import "./values/characters";
 
 // Canvas setup with PIXI
 const body = document.body;
@@ -44,6 +43,4 @@ Game.onError((type, error, { notify, t }) => {
     console.error(`Error occurred: ${type}`, error);
 });
 
-Game.onLoadingLabel((_stepId, { id }) => {
-    Assets.backgroundLoadBundle(id);
-});
+Game.onLoadingLabel((_stepId, { id }) => Assets.backgroundLoadBundle(id));
