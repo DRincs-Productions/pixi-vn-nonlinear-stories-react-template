@@ -1,13 +1,12 @@
-# Pixi’VN template (React + Vite + MUI joy)
+# Pixi’VN template - Text-based Story - React
 
 ![pixi-vn-cover](https://github.com/user-attachments/assets/c67ea9f4-c91c-46ea-bfbe-6bc0d18b5de7)
 
-This is a template for creating visual novels in React. It uses the Pixi’VN library and Vite as a build tool.
-This Template contains basic functionality inspired by the widespread Visual Noval engine Ren'Py.
+This is a template for creating text-based stories in React. It uses the Pixi’VN library and Vite as a build tool.
 
 ## Overview
 
-For testing purposes we will recreate the visual novel [Breakdown](https://joshpowlison.itch.io/breakdown) with Pixi’VN in this guide. Breakdown is a short story that has all the features that a visual novel should have. Josh Powlison, the creator of Breakdown, has given us permission to use his narration for educational purposes❤️.
+For testing purposes we will recreate the visual novel [Breakdown](https://joshpowlison.itch.io/breakdown) with Pixi’VN in this guide. Josh Powlison, the creator of Breakdown, has given us permission to use his narration for educational purposes❤️.
 
 The first page that appears is the main menu. From there, you can start the game, load a saved game, or go to the settings.
 
@@ -48,6 +47,7 @@ Core libraries:
   You can use the following button to show Tanstack Query interactions with the game. (the button will be automatically hidden when released)
 * [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom designs.
   * [Tailwind CSS Motion](https://rombo.co/tailwind/): A library that provides a set of utilities for creating animations with Tailwind CSS.
+  * [Tailwind CSS Typography](https://tailwindcss.com/docs/typography-plugin): A plugin that provides a set of utilities for styling text.
 
 UI libraries:
 
