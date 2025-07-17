@@ -4,7 +4,7 @@ import Typography from "@mui/joy/Typography";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import { useQueryCurrentLabelHistory } from "../use_query/useQueryInterface";
+import { useQueryCurrentLabelHistory } from "../hooks/useQueryInterface";
 
 export default function PreviousDialoguesScreen() {
     const { data: history = [] } = useQueryCurrentLabelHistory();
