@@ -1,8 +1,9 @@
 import { canvas, ImageSprite, narration } from "@drincs/pixi-vn";
+import { Box, CircularProgress } from "@mui/joy";
 import Stack from "@mui/joy/Stack";
 import { useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MenuButton from "../components/MenuButton";
 import { CANVAS_UI_LAYER_NAME, NARRATION_ROUTE } from "../constans";
 import useGameProps from "../hooks/useGameProps";
@@ -21,6 +22,7 @@ export default function MainMenu() {
     const { data: lastSave = null, isLoading } = useQueryLastSave();
     const gameProps = useGameProps();
     const { uiTransition: t, navigate, notify } = gameProps;
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         editHideInterface(false);
@@ -57,37 +59,55 @@ export default function MainMenu() {
                     if (!lastSave) {
                         return;
                     }
+                    setLoading(true);
                     loadSave(lastSave, navigate)
                         .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
                         .catch((e) => {
                             notify(t("fail_load"), { variant: "error" });
                             console.error(e);
-                        });
+                        })
+                        .finally(() => setLoading(false));
                 }}
                 transitionDelay={0.1}
                 loading={isLoading}
-                disabled={!isLoading && !lastSave}
+                disabled={(!isLoading && !lastSave) || loading}
             >
                 {t("continue")}
             </MenuButton>
             <MenuButton
-                onClick={() => {
+                onClick={async () => {
+                    setLoading(true);
                     canvas.removeAll();
-                    narration.callLabel("start", gameProps).then(() => {
-                        queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] });
-                        navigate(NARRATION_ROUTE);
-                    });
+                    await navigate(NARRATION_ROUTE);
+                    narration
+                        .callLabel("start", gameProps)
+                        .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
+                        .finally(() => setLoading(false));
                 }}
                 transitionDelay={0.2}
+                disabled={loading}
             >
                 {t("start")}
             </MenuButton>
-            <MenuButton onClick={editSaveScreen} transitionDelay={0.3}>
+            <MenuButton onClick={editSaveScreen} transitionDelay={0.3} disabled={loading}>
                 {t("load")}
             </MenuButton>
             <MenuButton onClick={() => setOpenSettings(true)} transitionDelay={0.4}>
                 {t("settings")}
             </MenuButton>
+            {loading && (
+                <Box
+                    sx={{
+                        position: "absolute",
+                        right: 0,
+                        bottom: 0,
+                        padding: 0.5,
+                    }}
+                    className='motion-preset-pop'
+                >
+                    <CircularProgress />
+                </Box>
+            )}
         </Stack>
     );
 }
