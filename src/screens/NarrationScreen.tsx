@@ -115,7 +115,10 @@ function NarrationScreenText({ paragraphRef }: { paragraphRef: RefObject<HTMLDiv
             >
                 {`${character?.name || ""} ${character?.surname || ""}`}
             </Typography>
-            <p className={`prose ${mode === "dark" ? "dark:prose-invert" : ""}`} style={{ margin: 0, padding: 0 }}>
+            <p
+                className={`prose ${mode === "dark" ? "dark:prose-invert" : ""}`}
+                style={{ margin: 0, padding: 0, maxWidth: "100%" }}
+            >
                 <span>
                     <Markdown
                         remarkPlugins={[remarkGfm]}
