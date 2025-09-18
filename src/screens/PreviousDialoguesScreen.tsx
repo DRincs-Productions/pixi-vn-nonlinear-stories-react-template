@@ -11,17 +11,17 @@ export default function PreviousDialoguesScreen() {
 
     return (
         <>
-            {history.map(({ character, text, choices, inputValue }, index) => (
+            {history.map(({ character, text, choices, inputValue, color }, index) => (
                 <div key={`previousdialogue-${index}`}>
-                    {character?.name && (
+                    {character && (
                         <Typography
                             fontSize='xl'
                             fontWeight='lg'
                             sx={{
-                                color: character?.color,
+                                color: color,
                             }}
                         >
-                            {`${character.name || ""} ${character.surname || ""}`}
+                            {character}
                         </Typography>
                     )}
                     <p style={{ margin: 0, padding: 0 }}>
