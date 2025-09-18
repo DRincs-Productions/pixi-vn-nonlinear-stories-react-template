@@ -101,18 +101,26 @@ export function useQueryCurrentLabelHistory() {
             currentLabelHistory.pop();
             const promises = currentLabelHistory.map(async (step) => {
                 let character = step.dialogue?.character;
+                let color: string | undefined;
+                let characterName: string | undefined;
                 if (typeof character === "string") {
-                    character = new Character(character, { name: t(character) });
+                    characterName = t(character);
+                } else {
+                    characterName = character?.name
+                        ? character.name + (character.surname ? " " + character.surname : "")
+                        : undefined;
+                    color = character?.color;
                 }
-                let text = step.dialogue?.text || "";
+                let text = step.dialogue?.text;
                 if (Array.isArray(text)) {
                     text = text.map((text) => t(text)).join(" ");
                 } else if (typeof text === "string") {
                     text = t(text);
                 }
                 return {
-                    character: character,
+                    character: characterName,
                     text: text,
+                    color: color,
                     choices: step.choices,
                     inputValue: step.inputValue,
                 };
